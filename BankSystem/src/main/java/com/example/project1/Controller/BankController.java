@@ -48,8 +48,8 @@ public class BankController {
         return new ApiResponse("Deposit successful " + customers.get(index).getBalance());
     }
 
-    @PutMapping("/withdraw/{index}")
-    public ApiResponse withdraw(@PathVariable int index, @RequestBody int amount) {
+    @PutMapping("/withdraw/{index}/{amount}")
+    public ApiResponse withdraw(@PathVariable int index, @PathVariable int amount) {
         if (amount <= customers.get(index).getBalance()) {
             customers.get(index).setBalance(customers.get(index).getBalance() - amount);
             return new ApiResponse("withdraw :" + amount + '\n' + "Remaining :" + customers.get(index).getBalance());
